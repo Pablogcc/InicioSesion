@@ -11,11 +11,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('publications', function (Blueprint $table) {
-            $table->id('publication_id');
-            $table->text('description');
-            $table->integer('likes')->default(0);
-            $table->string('image')->nullable();
+        Schema::create('messages', function (Blueprint $table) {
+            $table->id();
+            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->text('message');
             $table->timestamps();
         });
     }
@@ -25,6 +24,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('publications');
+        Schema::dropIfExists('messages');
     }
 };
